@@ -1,5 +1,3 @@
-version: "2.2"
-
 services:
   postgres:
     image: postgres:13.0
@@ -50,22 +48,6 @@ services:
       - ./plugins:/root/airflow/plugins
       - airflow-worker-logs:/root/airflow/logs
     command: airflow scheduler
-
-  test:
-    build: .
-    environment:
-      AIRFLOW_HOME: /repo
-    working_dir: /repo
-    volumes:
-      - .:/repo
-    entrypoint: make internal-test
-
-  lint:
-    build: .
-    working_dir: /repo
-    volumes:
-      - .:/repo
-    entrypoint: make internal-lint
 
 volumes:
   postgres: {}
